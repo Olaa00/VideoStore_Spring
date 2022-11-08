@@ -1,9 +1,12 @@
 package com.ola.videoapp.manager;
 import com.ola.videoapp.dao.entity.VideoCass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import com.ola.videoapp.dao.VideoCassRepo;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -19,7 +22,7 @@ public class VideoCassetteManager {
       return videoCassRepo.findById(id);
     }
 
-    public Iterable<VideoCass> findAll(Long id){
+    public Iterable<VideoCass> findAll(){
         return videoCassRepo.findAll();
     }
     public VideoCass save(VideoCass videoCass){ //zwraca zapisany element
@@ -27,6 +30,14 @@ public class VideoCassetteManager {
     }
     public void deleteById(Long id){  //usuwa element po id
         videoCassRepo.deleteById(id);
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void fillDB() {
+        save(new VideoCass(1l, "Maveric", LocalDate.of(1980, 5, 2)));
+        save(new VideoCass(1l, "Maveric", LocalDate.of(1980, 5, 2)));
+        save(new VideoCass(2l, "Disney+", LocalDate.of(2000, 2, 18)));
+        save(new VideoCass(3L, "Nowy Pop", LocalDate.of(2018,9,2)));
     }
 
 }
