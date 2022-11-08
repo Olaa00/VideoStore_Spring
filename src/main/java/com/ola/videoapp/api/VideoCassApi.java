@@ -1,5 +1,6 @@
-package com.ola.videoapp;
+package com.ola.videoapp.api;
 
+import com.ola.videoapp.dao.entity.VideoCass;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;

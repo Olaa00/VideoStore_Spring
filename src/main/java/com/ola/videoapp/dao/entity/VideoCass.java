@@ -1,8 +1,15 @@
-package com.ola.videoapp;
+package com.ola.videoapp.dao.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class VideoCass {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     private String tittle;
     private LocalDate productionDate;
